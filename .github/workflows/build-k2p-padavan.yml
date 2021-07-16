@@ -36,11 +36,16 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
+    - name: Setup Go environment
+      uses: actions/setup-go@v2.1.3
+      with:
+        # The Go version to download (if necessary) and use. Supports semver spec and ranges.
+        go-version: 1.15.8
     - name: Set Golang
       run: |
         cd /opt/hostedtoolcache/go
         rm -rf /opt/hostedtoolcache/go/1.14.13
-        mv 1.16.6 1.14.13
+        mv 1.15.8 1.14.13
     - name: Build Firmware
       env:
         TNAME: K2P-5.0
